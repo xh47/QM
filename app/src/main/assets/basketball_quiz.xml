@@ -1,0 +1,27 @@
+<quiz>
+    <title>NBA Quiz</title>
+    <question>
+        <query>Who is the all-time leading scorer in the NBA?</query>
+        <type>text</type>
+        <answer>
+            <name>Kobe Bryant</name>
+            <correct>false</correct>
+            <!--<photo></photo>-->
+        </answer>
+        <answer>
+            <name>Kareem Abdul-Jabbar</name>
+            <correct>true</correct>
+            <!--<photo></photo>-->
+        </answer>
+        <answer>
+            <name>Michael Jordan</name>
+            <correct>false</correct>
+            <!--<photo></photo>-->
+        </answer>
+        <answer>
+            <name>Karl Malone</name>
+            <correct>false</correct>
+            <!--<photo></photo>-->
+        </answer>
+    </question>
+</quiz>

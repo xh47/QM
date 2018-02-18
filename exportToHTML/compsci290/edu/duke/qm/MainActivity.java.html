@@ -1,0 +1,470 @@
+<html>
+<head>
+<title>MainActivity.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.ln { color: rgb(0,0,0); font-weight: normal; font-style: normal; }
+.s0 { color: rgb(0,0,128); font-weight: bold; }
+.s1 { color: rgb(0,0,0); }
+.s2 { color: rgb(128,128,128); font-style: italic; }
+.s3 { color: rgb(0,0,255); }
+.s4 { color: rgb(0,128,0); font-weight: bold; }
+</style>
+</head>
+<BODY BGCOLOR="#ffffff">
+<TABLE CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#C0C0C0" >
+<TR><TD><CENTER>
+<FONT FACE="Arial, Helvetica" COLOR="#000000">
+MainActivity.java</FONT>
+</center></TD></TR></TABLE>
+<pre>
+<span class="s0">package </span><span class="s1">compsci290.edu.duke.qm; 
+ 
+</span><span class="s0">import </span><span class="s1">android.support.v7.app.AppCompatActivity; 
+</span><span class="s0">import </span><span class="s1">android.os.Bundle; 
+</span><span class="s0">import </span><span class="s1">android.view.Menu; 
+</span><span class="s0">import </span><span class="s1">android.view.MenuItem; 
+</span><span class="s0">import </span><span class="s1">android.view.View; 
+</span><span class="s0">import </span><span class="s1">android.widget.Button; 
+</span><span class="s0">import </span><span class="s1">android.widget.TextView; 
+</span><span class="s0">import </span><span class="s1">android.widget.Toast; 
+ 
+</span><span class="s0">import </span><span class="s1">java.util.ArrayList; 
+</span><span class="s0">import </span><span class="s1">java.util.Collections; 
+</span><span class="s0">import </span><span class="s1">java.util.Random; 
+ 
+</span><span class="s2">/** 
+ * Modified by JuanBermudez on 2/6/17. 
+ */</span><span class="s1"> 
+</span><span class="s0">public class </span><span class="s1">MainActivity </span><span class="s0">extends </span><span class="s1">AppCompatActivity { 
+ 
+    </span><span class="s0">private </span><span class="s1">Button myLeftButton; 
+    </span><span class="s0">private </span><span class="s1">Button myRightButton; 
+    </span><span class="s0">private </span><span class="s1">Button myBottomLeftButton; 
+    </span><span class="s0">private </span><span class="s1">Button myBottomRightButton; 
+ 
+    </span><span class="s0">private </span><span class="s1">QuizGenerator myQuiz; 
+    </span><span class="s0">private </span><span class="s1">Quiz4Generator my4Quiz; 
+    </span><span class="s0">private </span><span class="s1">TextView myQuestionView; 
+    </span><span class="s0">private </span><span class="s1">TextView mScoreView; 
+    </span><span class="s0">private </span><span class="s1">TextView finalScoreView; 
+    </span><span class="s0">private int </span><span class="s1">mQuestionIndex; 
+    </span><span class="s0">private int </span><span class="s1">mCorrect; 
+    </span><span class="s0">private int </span><span class="s1">mRandom = (</span><span class="s0">int</span><span class="s1">) Math.random()*</span><span class="s3">2</span><span class="s1">;; 
+    </span><span class="s0">private </span><span class="s1">String mScoreBase; 
+    </span><span class="s0">private </span><span class="s1">ArrayList&lt;Integer&gt; shuff = </span><span class="s0">new </span><span class="s1">ArrayList&lt;&gt;(); 
+    </span><span class="s0">private int </span><span class="s1">mQNum = </span><span class="s3">5</span><span class="s1">; 
+    </span><span class="s0">private </span><span class="s1">String[] mAnswers = </span><span class="s0">new </span><span class="s1">String[</span><span class="s3">4</span><span class="s1">]; 
+ 
+ 
+    </span><span class="s0">private static </span><span class="s1">String INDEX = </span><span class="s4">&quot;INDEX&quot;</span><span class="s1">; 
+    </span><span class="s0">private static </span><span class="s1">String SCORE = </span><span class="s4">&quot;SCORE&quot;</span><span class="s1">; 
+    </span><span class="s0">private static </span><span class="s1">String GAME = </span><span class="s4">&quot;GAME&quot;</span><span class="s1">; 
+    </span><span class="s0">private static </span><span class="s1">String ANSWERS = </span><span class="s4">&quot;ANSWERS&quot;</span><span class="s1">; 
+ 
+ 
+    @Override 
+    </span><span class="s0">protected void </span><span class="s1">onCreate(Bundle savedInstanceState) { 
+        </span><span class="s0">super</span><span class="s1">.onCreate(savedInstanceState); 
+        </span><span class="s0">for</span><span class="s1">(</span><span class="s0">int </span><span class="s1">i = </span><span class="s3">0</span><span class="s1">; i &lt; </span><span class="s3">4</span><span class="s1">; i++){ 
+            shuff.add(i,i); 
+        } 
+        setContentView(R.layout.home_screen); 
+ 
+ 
+ 
+ 
+</span><span class="s2">//        if (savedInstanceState != null) {</span><span class="s1"> 
+</span><span class="s2">//            Toast.makeText(MainActivity.this,</span><span class="s1"> 
+</span><span class="s2">//                    &quot;create and saved != null&quot;,</span><span class="s1"> 
+</span><span class="s2">//                    Toast.LENGTH_SHORT).show();</span><span class="s1"> 
+</span><span class="s2">//        }</span><span class="s1"> 
+    } 
+ 
+    @Override 
+    </span><span class="s0">public void </span><span class="s1">onRestoreInstanceState(Bundle savedInstanceState){ 
+        </span><span class="s0">super</span><span class="s1">.onRestoreInstanceState(savedInstanceState); 
+        mQNum = savedInstanceState.getInt(GAME); 
+        mQuestionIndex = savedInstanceState.getInt(INDEX); 
+        myQuiz = </span><span class="s0">new </span><span class="s1">QuizGenerator(); 
+        my4Quiz = </span><span class="s0">new </span><span class="s1">Quiz4Generator(); 
+        mCorrect = savedInstanceState.getInt(SCORE); 
+        mAnswers = savedInstanceState.getStringArray(ANSWERS); 
+    </span><span class="s0">if </span><span class="s1">(mQNum == </span><span class="s3">2</span><span class="s1">) { 
+        new2Game2(mAnswers); 
+        myQuiz = </span><span class="s0">new </span><span class="s1">QuizGenerator(); 
+        QuizGenerator.Question q = myQuiz.getQuestion(mQuestionIndex); 
+        String s = String.format(</span><span class="s4">&quot;%d/%d with %d to go&quot;</span><span class="s1">,mCorrect,myQuiz.size(),(myQuiz.size()-mQuestionIndex)); 
+        mScoreView.setText(mScoreBase+s); 
+ 
+        myQuestionView.setText(q.getQuery()); 
+ 
+ 
+    } 
+        </span><span class="s0">else if </span><span class="s1">(mQNum == </span><span class="s3">4</span><span class="s1">){ 
+        new4Game2(mAnswers); 
+        my4Quiz = </span><span class="s0">new </span><span class="s1">Quiz4Generator(); 
+        Quiz4Generator.Question q = my4Quiz.getQuestion(mQuestionIndex); 
+        String s = String.format(</span><span class="s4">&quot;%d/%d with %d to go&quot;</span><span class="s1">,mCorrect,my4Quiz.size(),(my4Quiz.size()-mQuestionIndex)); 
+        mScoreView.setText(mScoreBase+s); 
+ 
+ 
+        myQuestionView.setText(q.getQuery()); 
+ 
+    } 
+ 
+        </span><span class="s0">else if </span><span class="s1">(mQNum == </span><span class="s3">0</span><span class="s1">){ 
+        String s = String.format(</span><span class="s4">&quot;%d/%d with %d to go&quot;</span><span class="s1">,mCorrect,myQuiz.size(),(myQuiz.size()-mQuestionIndex)); 
+        String fin = </span><span class="s4">&quot;Score:&quot;</span><span class="s1">+ </span><span class="s4">&quot; &quot; </span><span class="s1">+ s; 
+ 
+        setContentView(R.layout.done); 
+        finalScoreView = (TextView) </span><span class="s0">this</span><span class="s1">.findViewById(R.id.score_view); 
+        finalScoreView.setText(fin); 
+    } 
+    </span><span class="s0">else if </span><span class="s1">(mQNum == </span><span class="s3">1</span><span class="s1">){ 
+        String s = String.format(</span><span class="s4">&quot;%d/%d with %d to go&quot;</span><span class="s1">,mCorrect,my4Quiz.size(),(my4Quiz.size()-mQuestionIndex)); 
+        String fin = </span><span class="s4">&quot;Score:&quot;</span><span class="s1">+ </span><span class="s4">&quot; &quot; </span><span class="s1">+ s; 
+ 
+        setContentView(R.layout.done4); 
+        finalScoreView = (TextView) </span><span class="s0">this</span><span class="s1">.findViewById(R.id.score_view); 
+        finalScoreView.setText(fin); 
+    } 
+        </span><span class="s0">else if </span><span class="s1">(mQNum == </span><span class="s3">5</span><span class="s1">){ 
+        setContentView(R.layout.home_screen); 
+ 
+    } 
+ 
+ 
+    } 
+ 
+    @Override 
+    </span><span class="s0">public void </span><span class="s1">onSaveInstanceState(Bundle state){ 
+        </span><span class="s0">super</span><span class="s1">.onSaveInstanceState(state); 
+        state.putInt(INDEX,mQuestionIndex); 
+        state.putInt(SCORE,mCorrect); 
+        state.putInt(GAME, mQNum); 
+        state.putStringArray(ANSWERS, mAnswers); 
+ 
+    } 
+ 
+    @Override 
+    </span><span class="s0">protected void </span><span class="s1">onStart(){ 
+        </span><span class="s0">super</span><span class="s1">.onStart(); 
+    } 
+ 
+    </span><span class="s0">public void </span><span class="s1">takeAnotherQuiz(View button){ 
+        new2Game(); 
+    } 
+ 
+    </span><span class="s0">public void </span><span class="s1">takeAnother4Quiz(View button){ 
+        new4Game(); 
+    } 
+    </span><span class="s0">public void </span><span class="s1">quit(View button){ 
+        setContentView(R.layout.home_screen); 
+    } 
+    </span><span class="s0">public void </span><span class="s1">leftClick(View button){ 
+        </span><span class="s0">if</span><span class="s1">(myLeftButton.getText().toString().equals(myQuiz.getQuestion(mQuestionIndex).getCorrectAnswer())) { 
+            Toast.makeText(MainActivity.</span><span class="s0">this</span><span class="s1">, 
+                    </span><span class="s4">&quot;that's correct! :-)&quot;</span><span class="s1">, 
+                    Toast.LENGTH_SHORT).show(); 
+            mCorrect += </span><span class="s3">1</span><span class="s1">; 
+            updateScore(); 
+        } 
+        </span><span class="s0">else</span><span class="s1">{ 
+            Toast.makeText(MainActivity.</span><span class="s0">this</span><span class="s1">, 
+                    </span><span class="s4">&quot;that's wrong :-(&quot;</span><span class="s1">, 
+                    Toast.LENGTH_SHORT).show(); 
+            updateScore(); 
+        } 
+ 
+ 
+    } 
+ 
+    </span><span class="s0">public void </span><span class="s1">rightClick(View button){ 
+        </span><span class="s0">if</span><span class="s1">(myRightButton.getText().toString().equals(myQuiz.getQuestion(mQuestionIndex).getCorrectAnswer())) { 
+            Toast.makeText(MainActivity.</span><span class="s0">this</span><span class="s1">, 
+                    </span><span class="s4">&quot;that's correct! :-)&quot;</span><span class="s1">, 
+                    Toast.LENGTH_SHORT).show(); 
+            mCorrect += </span><span class="s3">1</span><span class="s1">; 
+            updateScore(); 
+        } 
+        </span><span class="s0">else </span><span class="s1">{ 
+            Toast.makeText(MainActivity.</span><span class="s0">this</span><span class="s1">, 
+                    </span><span class="s4">&quot;that's wrong :-(&quot;</span><span class="s1">, 
+                    Toast.LENGTH_SHORT).show(); 
+            updateScore(); 
+        } 
+ 
+ 
+    } 
+    </span><span class="s0">public void </span><span class="s1">topLeftClick(View button){ 
+        </span><span class="s0">if</span><span class="s1">(myLeftButton.getText().toString().equals(my4Quiz.getQuestion(mQuestionIndex).getCorrectAnswer())) { 
+            Toast.makeText(MainActivity.</span><span class="s0">this</span><span class="s1">, 
+                    </span><span class="s4">&quot;that's correct! :-)&quot;</span><span class="s1">, 
+                    Toast.LENGTH_SHORT).show(); 
+            mCorrect += </span><span class="s3">1</span><span class="s1">; 
+            update4Score(); 
+        } 
+        </span><span class="s0">else</span><span class="s1">{ 
+            Toast.makeText(MainActivity.</span><span class="s0">this</span><span class="s1">, 
+                    </span><span class="s4">&quot;that's wrong :-(&quot;</span><span class="s1">, 
+                    Toast.LENGTH_SHORT).show(); 
+            update4Score(); 
+        } 
+ 
+ 
+    } 
+ 
+    </span><span class="s0">public void </span><span class="s1">topRightClick(View button) { 
+        </span><span class="s0">if </span><span class="s1">(myRightButton.getText().toString().equals(my4Quiz.getQuestion(mQuestionIndex).getCorrectAnswer())) { 
+            Toast.makeText(MainActivity.</span><span class="s0">this</span><span class="s1">, 
+                    </span><span class="s4">&quot;that's correct! :-)&quot;</span><span class="s1">, 
+                    Toast.LENGTH_SHORT).show(); 
+            mCorrect += </span><span class="s3">1</span><span class="s1">; 
+            update4Score(); 
+        } </span><span class="s0">else </span><span class="s1">{ 
+            Toast.makeText(MainActivity.</span><span class="s0">this</span><span class="s1">, 
+                    </span><span class="s4">&quot;that's wrong :-(&quot;</span><span class="s1">, 
+                    Toast.LENGTH_SHORT).show(); 
+            update4Score(); 
+        } 
+    } 
+ 
+    </span><span class="s0">public void </span><span class="s1">bottomLeftClick(View button){ 
+        </span><span class="s0">if</span><span class="s1">(myBottomLeftButton.getText().toString().equals(my4Quiz.getQuestion(mQuestionIndex).getCorrectAnswer())) { 
+            Toast.makeText(MainActivity.</span><span class="s0">this</span><span class="s1">, 
+                    </span><span class="s4">&quot;that's correct! :-)&quot;</span><span class="s1">, 
+                    Toast.LENGTH_SHORT).show(); 
+            mCorrect += </span><span class="s3">1</span><span class="s1">; 
+            update4Score(); 
+        } 
+        </span><span class="s0">else</span><span class="s1">{ 
+            Toast.makeText(MainActivity.</span><span class="s0">this</span><span class="s1">, 
+                    </span><span class="s4">&quot;that's wrong :-(&quot;</span><span class="s1">, 
+                    Toast.LENGTH_SHORT).show(); 
+            update4Score(); 
+        } 
+ 
+ 
+    } 
+ 
+    </span><span class="s0">public void </span><span class="s1">bottomRightClick(View button){ 
+        </span><span class="s0">if</span><span class="s1">(myBottomRightButton.getText().toString().equals(my4Quiz.getQuestion(mQuestionIndex).getCorrectAnswer())) { 
+            Toast.makeText(MainActivity.</span><span class="s0">this</span><span class="s1">, 
+                    </span><span class="s4">&quot;that's correct! :-)&quot;</span><span class="s1">, 
+                    Toast.LENGTH_SHORT).show(); 
+            mCorrect += </span><span class="s3">1</span><span class="s1">; 
+            update4Score(); 
+        } 
+        </span><span class="s0">else</span><span class="s1">{ 
+            Toast.makeText(MainActivity.</span><span class="s0">this</span><span class="s1">, 
+                    </span><span class="s4">&quot;that's wrong :-(&quot;</span><span class="s1">, 
+                    Toast.LENGTH_SHORT).show(); 
+            update4Score(); 
+        } 
+ 
+ 
+    } 
+ 
+ 
+ 
+    </span><span class="s0">private void </span><span class="s1">updateScore() { 
+        mQuestionIndex += </span><span class="s3">1</span><span class="s1">; 
+        </span><span class="s0">int </span><span class="s1">remaining = myQuiz.size()-mQuestionIndex; 
+        String s = String.format(</span><span class="s4">&quot;%d/%d with %d to go&quot;</span><span class="s1">,mCorrect,myQuiz.size(),remaining); 
+        mScoreView.setText(mScoreBase+s); 
+        </span><span class="s0">if </span><span class="s1">(mQuestionIndex &lt; myQuiz.size()){ 
+            askQuestion(mQuestionIndex); 
+ 
+        } 
+        </span><span class="s0">else </span><span class="s1">{ 
+            Toast.makeText(MainActivity.</span><span class="s0">this</span><span class="s1">, 
+                    </span><span class="s4">&quot;quiz is over&quot;</span><span class="s1">, 
+                    Toast.LENGTH_SHORT).show(); 
+    mQNum = </span><span class="s3">0</span><span class="s1">; 
+            String fin = mScoreBase+ </span><span class="s4">&quot; &quot; </span><span class="s1">+ s; 
+ 
+            setContentView(R.layout.done); 
+            finalScoreView = (TextView) </span><span class="s0">this</span><span class="s1">.findViewById(R.id.score_view); 
+            finalScoreView.setText(fin); 
+ 
+        } 
+ 
+    } 
+ 
+    </span><span class="s0">private void </span><span class="s1">update4Score() { 
+        mQuestionIndex += </span><span class="s3">1</span><span class="s1">; 
+        </span><span class="s0">int </span><span class="s1">remaining = my4Quiz.size()-mQuestionIndex; 
+        String s = String.format(</span><span class="s4">&quot;%d/%d </span><span class="s0">\n\n</span><span class="s4">   %d to go&quot;</span><span class="s1">,mCorrect,my4Quiz.size(),remaining); 
+        mScoreView.setText(mScoreBase+s); 
+        </span><span class="s0">if </span><span class="s1">(mQuestionIndex &lt; my4Quiz.size()){ 
+            ask4Question(mQuestionIndex); 
+ 
+        } 
+        </span><span class="s0">else </span><span class="s1">{ 
+            Toast.makeText(MainActivity.</span><span class="s0">this</span><span class="s1">, 
+                    </span><span class="s4">&quot;quiz is over&quot;</span><span class="s1">, 
+                    Toast.LENGTH_SHORT).show(); 
+            mQNum = </span><span class="s3">1</span><span class="s1">; 
+            String fin = mScoreBase+ </span><span class="s4">&quot; &quot; </span><span class="s1">+s; 
+ 
+            setContentView(R.layout.done4); 
+            finalScoreView = (TextView) </span><span class="s0">this</span><span class="s1">.findViewById(R.id.score_view); 
+            finalScoreView.setText(fin); 
+ 
+        } 
+ 
+    } 
+ 
+    @Override 
+    </span><span class="s0">public boolean </span><span class="s1">onCreateOptionsMenu(Menu menu){ 
+        getMenuInflater().inflate(R.menu.menu_main,menu); 
+        </span><span class="s0">return true</span><span class="s1">; 
+    } 
+ 
+    @Override 
+    </span><span class="s0">public boolean </span><span class="s1">onOptionsItemSelected(MenuItem item){ 
+        </span><span class="s0">int </span><span class="s1">id = item.getItemId(); 
+        </span><span class="s0">switch </span><span class="s1">(id) { 
+            </span><span class="s0">case </span><span class="s1">R.id.new_2quiz: 
+                new2Game(); 
+                </span><span class="s0">return true</span><span class="s1">; 
+            </span><span class="s0">case </span><span class="s1">R.id.new_4quiz: 
+                new4Game(); 
+                </span><span class="s0">return true</span><span class="s1">; 
+            </span><span class="s0">default</span><span class="s1">: 
+                </span><span class="s0">return super</span><span class="s1">.onOptionsItemSelected(item); 
+        } 
+    } 
+ 
+    </span><span class="s0">private void </span><span class="s1">new2Game() { 
+        setContentView(R.layout.activity_main); 
+        mQNum = </span><span class="s3">2</span><span class="s1">; 
+        myQuiz = </span><span class="s0">new </span><span class="s1">QuizGenerator(); 
+        myQuestionView = (TextView) </span><span class="s0">this</span><span class="s1">.findViewById(R.id.question_text); 
+        myLeftButton = (Button) </span><span class="s0">this</span><span class="s1">.findViewById(R.id.left_button); 
+        myRightButton = (Button) </span><span class="s0">this</span><span class="s1">.findViewById(R.id.right_button); 
+        mScoreView = (TextView) </span><span class="s0">this</span><span class="s1">.findViewById(R.id.score_view); 
+        mScoreBase = mScoreView.getText().toString(); 
+        String s = String.format(</span><span class="s4">&quot;%d/%d with %d to go&quot;</span><span class="s1">,mCorrect,myQuiz.size(),(myQuiz.size()-mQuestionIndex)); 
+        mScoreView.setText(mScoreBase+s); 
+        mQuestionIndex = </span><span class="s3">0</span><span class="s1">; 
+        mCorrect = </span><span class="s3">0</span><span class="s1">; 
+        askQuestion(mQuestionIndex); 
+ 
+    } 
+    </span><span class="s0">private void </span><span class="s1">new2Game2(String[] answers) { 
+        setContentView(R.layout.activity_main); 
+        mQNum = </span><span class="s3">2</span><span class="s1">; 
+        myQuiz = </span><span class="s0">new </span><span class="s1">QuizGenerator(); 
+        myQuestionView = (TextView) </span><span class="s0">this</span><span class="s1">.findViewById(R.id.question_text); 
+        myLeftButton = (Button) </span><span class="s0">this</span><span class="s1">.findViewById(R.id.left_button); 
+        myRightButton = (Button) </span><span class="s0">this</span><span class="s1">.findViewById(R.id.right_button); 
+        mScoreView = (TextView) </span><span class="s0">this</span><span class="s1">.findViewById(R.id.score_view); 
+        mScoreBase = mScoreView.getText().toString(); 
+ 
+ 
+        myRightButton.setText(answers[</span><span class="s3">1</span><span class="s1">]); 
+        myLeftButton.setText(answers[</span><span class="s3">0</span><span class="s1">]); 
+ 
+ 
+ 
+    } 
+    </span><span class="s0">private void </span><span class="s1">new4Game() { 
+        setContentView(R.layout.four_question); 
+        mQNum = </span><span class="s3">4</span><span class="s1">; 
+        mScoreView = (TextView) </span><span class="s0">this</span><span class="s1">.findViewById(R.id.score_view4); 
+        mScoreBase = mScoreView.getText().toString(); 
+ 
+ 
+        my4Quiz = </span><span class="s0">new </span><span class="s1">Quiz4Generator(); 
+        String s = String.format(</span><span class="s4">&quot;%d/%d with %d to go&quot;</span><span class="s1">,mCorrect,my4Quiz.size(),(my4Quiz.size()-mQuestionIndex)); 
+        mScoreView.setText(mScoreBase+s); 
+        myQuestionView = (TextView) </span><span class="s0">this</span><span class="s1">.findViewById(R.id.question_text4); 
+        myBottomLeftButton = (Button) </span><span class="s0">this</span><span class="s1">.findViewById(R.id.bottomleft_button); 
+        myBottomRightButton = (Button) </span><span class="s0">this</span><span class="s1">.findViewById(R.id.bottomright_button); 
+        myLeftButton = (Button) </span><span class="s0">this</span><span class="s1">.findViewById(R.id.topleft_button); 
+        myRightButton = (Button) </span><span class="s0">this</span><span class="s1">.findViewById(R.id.topright_button); 
+ 
+ 
+        mQuestionIndex = </span><span class="s3">0</span><span class="s1">; 
+        mCorrect = </span><span class="s3">0</span><span class="s1">; 
+ 
+        ask4Question(mQuestionIndex); 
+ 
+ 
+    } 
+    </span><span class="s0">private void </span><span class="s1">new4Game2(String[] answers) { 
+        setContentView(R.layout.four_question); 
+        mQNum = </span><span class="s3">4</span><span class="s1">; 
+        mScoreView = (TextView) </span><span class="s0">this</span><span class="s1">.findViewById(R.id.score_view4); 
+        mScoreBase = mScoreView.getText().toString(); 
+        my4Quiz = </span><span class="s0">new </span><span class="s1">Quiz4Generator(); 
+        myQuestionView = (TextView) </span><span class="s0">this</span><span class="s1">.findViewById(R.id.question_text4); 
+        myBottomLeftButton = (Button) </span><span class="s0">this</span><span class="s1">.findViewById(R.id.bottomleft_button); 
+        myBottomRightButton = (Button) </span><span class="s0">this</span><span class="s1">.findViewById(R.id.bottomright_button); 
+        myLeftButton = (Button) </span><span class="s0">this</span><span class="s1">.findViewById(R.id.topleft_button); 
+        myRightButton = (Button) </span><span class="s0">this</span><span class="s1">.findViewById(R.id.topright_button); 
+ 
+ 
+        myLeftButton.setText(answers[</span><span class="s3">0</span><span class="s1">]); 
+        myRightButton.setText(answers[</span><span class="s3">1</span><span class="s1">]); 
+        myBottomLeftButton.setText(answers[</span><span class="s3">2</span><span class="s1">]); 
+        myBottomRightButton.setText(answers[</span><span class="s3">3</span><span class="s1">]); 
+ 
+ 
+ 
+    } 
+ 
+ 
+    </span><span class="s0">private void </span><span class="s1">askQuestion(</span><span class="s0">int </span><span class="s1">mQI) { 
+        QuizGenerator.Question q = myQuiz.getQuestion(mQI); 
+        myQuestionView.setText(q.getQuery()); 
+        mRandom = (</span><span class="s0">int</span><span class="s1">) (Math.random()*</span><span class="s3">2</span><span class="s1">); 
+ 
+ 
+        </span><span class="s0">if </span><span class="s1">(mRandom == </span><span class="s3">1</span><span class="s1">) { 
+            myLeftButton.setText(q.getCorrectAnswer()); 
+            myRightButton.setText(q.getWrongAnswer()); 
+        } 
+        </span><span class="s0">else if</span><span class="s1">(mRandom == </span><span class="s3">0</span><span class="s1">){ 
+            myRightButton.setText(q.getCorrectAnswer()); 
+            myLeftButton.setText(q.getWrongAnswer()); 
+        } 
+ 
+        String rightB = myRightButton.getText().toString(); 
+        String leftB = myLeftButton.getText().toString(); 
+        mAnswers[</span><span class="s3">1</span><span class="s1">]= rightB; 
+        mAnswers[</span><span class="s3">0</span><span class="s1">]= leftB; 
+    } 
+ 
+    </span><span class="s0">private void </span><span class="s1">ask4Question(</span><span class="s0">int </span><span class="s1">mQI) { 
+ 
+        Collections.shuffle(shuff); 
+        Quiz4Generator.Question q = my4Quiz.getQuestion(mQI); 
+        myQuestionView.setText(q.getQuery()); 
+ 
+ 
+ 
+        myLeftButton.setText(q.getAnswers()[shuff.get(</span><span class="s3">0</span><span class="s1">)]); 
+        myRightButton.setText(q.getAnswers()[shuff.get(</span><span class="s3">1</span><span class="s1">)]); 
+        myBottomRightButton.setText(q.getAnswers()[shuff.get(</span><span class="s3">2</span><span class="s1">)]); 
+        myBottomLeftButton.setText(q.getAnswers()[shuff.get(</span><span class="s3">3</span><span class="s1">)]); 
+ 
+        String rightB = myRightButton.getText().toString(); 
+        String leftB = myLeftButton.getText().toString(); 
+        String leftBB = myBottomLeftButton.getText().toString(); 
+        String rightBB = myBottomRightButton.getText().toString(); 
+        mAnswers[</span><span class="s3">0</span><span class="s1">]= leftB; 
+        mAnswers[</span><span class="s3">1</span><span class="s1">]= rightB; 
+        mAnswers[</span><span class="s3">2</span><span class="s1">]= leftBB; 
+        mAnswers[</span><span class="s3">3</span><span class="s1">]= rightBB; 
+ 
+ 
+    } 
+ 
+ 
+} 
+</span></pre>
+</body>
+</html>

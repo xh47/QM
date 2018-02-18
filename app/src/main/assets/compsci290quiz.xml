@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<quiz>
+    <title>CompSci 290.3</title>
+    <question>
+        <text>Who teaches CompSci 290.3?</text>
+        <difficulty>0</difficulty>
+        <correctanswer>Ola</correctanswer>
+        <wronganswer>Coach K</wronganswer>
+    </question>
+    <question>
+        <text>How many students are in a group?</text>
+        <difficulty>0</difficulty>
+        <correctanswer>4</correctanswer>
+        <wronganswer>3</wronganswer>
+        <wronganswer>2</wronganswer>
+    </question>
+    <question>
+        <text>What kind of smartphone did each group get?</text>
+        <difficulty>2</difficulty>
+        <correctanswer>Pixel</correctanswer>
+        <wronganswer>iPhone</wronganswer>
+    </question>
+</quiz>

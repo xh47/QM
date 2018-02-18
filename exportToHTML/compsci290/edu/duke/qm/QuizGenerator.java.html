@@ -1,0 +1,109 @@
+<html>
+<head>
+<title>QuizGenerator.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.ln { color: rgb(0,0,0); font-weight: normal; font-style: normal; }
+.s0 { color: rgb(0,0,128); font-weight: bold; }
+.s1 { color: rgb(0,0,0); }
+.s2 { color: rgb(128,128,128); font-style: italic; }
+.s3 { color: rgb(0,0,255); }
+.s4 { color: rgb(0,128,0); font-weight: bold; }
+</style>
+</head>
+<BODY BGCOLOR="#ffffff">
+<TABLE CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#C0C0C0" >
+<TR><TD><CENTER>
+<FONT FACE="Arial, Helvetica" COLOR="#000000">
+QuizGenerator.java</FONT>
+</center></TD></TR></TABLE>
+<pre>
+<span class="s0">package </span><span class="s1">compsci290.edu.duke.qm; 
+ 
+</span><span class="s0">import </span><span class="s1">java.lang.reflect.Array; 
+</span><span class="s0">import </span><span class="s1">java.util.ArrayList; 
+</span><span class="s0">import </span><span class="s1">java.util.HashMap; 
+</span><span class="s0">import </span><span class="s1">java.util.*; 
+ 
+</span><span class="s0">import </span><span class="s1">java.util.*; 
+ 
+ 
+</span><span class="s2">/** 
+ * Created by ola on 1/26/17. 
+ * Modified by Juan Bermudez 2/6/17 
+ */</span><span class="s1"> 
+ 
+</span><span class="s0">public class </span><span class="s1">QuizGenerator { 
+ 
+    </span><span class="s0">private </span><span class="s1">ArrayList&lt;Question&gt; myQuestions; 
+    </span><span class="s0">private int </span><span class="s1">mIndex; 
+ 
+    </span><span class="s0">public class </span><span class="s1">Question { 
+        </span><span class="s0">private </span><span class="s1">String mQuery; 
+        </span><span class="s0">private </span><span class="s1">String mCorrect; 
+        </span><span class="s0">private </span><span class="s1">String [] mWrong = </span><span class="s0">new </span><span class="s1">String[</span><span class="s3">4</span><span class="s1">]; 
+ 
+        </span><span class="s0">public </span><span class="s1">Question(String q, String right, String [] wrong) { 
+ 
+            mQuery = q; 
+            mCorrect = right; 
+            mWrong = wrong; 
+        } 
+        </span><span class="s0">public </span><span class="s1">String getQuery() { 
+            </span><span class="s0">return </span><span class="s1">mQuery; 
+        } 
+ 
+        </span><span class="s0">public </span><span class="s1">String getCorrectAnswer() { 
+            </span><span class="s0">return </span><span class="s1">mCorrect; 
+        } 
+ 
+        </span><span class="s0">public </span><span class="s1">String getWrongAnswer() { 
+            Random rand = </span><span class="s0">new </span><span class="s1">Random(); 
+ 
+            </span><span class="s0">int  </span><span class="s1">x = rand.nextInt(</span><span class="s3">3</span><span class="s1">); 
+            </span><span class="s0">return </span><span class="s1">mWrong[x]; 
+        } 
+    } 
+ 
+    </span><span class="s0">public int </span><span class="s1">size(){ 
+        </span><span class="s0">return </span><span class="s1">myQuestions.size(); 
+    } 
+ 
+    </span><span class="s0">public </span><span class="s1">Question getQuestion(){ 
+        </span><span class="s0">if </span><span class="s1">(mIndex &lt; myQuestions.size()) { 
+            Question q = myQuestions.get(mIndex); 
+            mIndex++; 
+            </span><span class="s0">return </span><span class="s1">q; 
+        } 
+        </span><span class="s0">return null</span><span class="s1">; 
+    } 
+    </span><span class="s0">public </span><span class="s1">Question getQuestion(</span><span class="s0">int </span><span class="s1">index){ 
+        </span><span class="s0">if </span><span class="s1">(</span><span class="s3">0 </span><span class="s1">&lt;= index &amp;&amp; index &lt; myQuestions.size()){ 
+            </span><span class="s0">return </span><span class="s1">myQuestions.get(index); 
+        } 
+        </span><span class="s0">throw new </span><span class="s1">IndexOutOfBoundsException(</span><span class="s4">&quot;bad index &quot;</span><span class="s1">+index); 
+    } 
+ 
+    </span><span class="s0">public </span><span class="s1">QuizGenerator(){ 
+        myQuestions = </span><span class="s0">new </span><span class="s1">ArrayList&lt;Question&gt;(); 
+        makeQuiz(); 
+    } 
+ 
+    </span><span class="s0">private void </span><span class="s1">makeQuiz() { 
+        String [] wrongs1 = {</span><span class="s4">&quot;The Imitation Game&quot;</span><span class="s1">,</span><span class="s4">&quot;The Circle&quot;</span><span class="s1">,</span><span class="s4">&quot;The Social Network&quot;</span><span class="s1">}; 
+        String [] wrongs2 = {</span><span class="s4">&quot;6:10&quot;</span><span class="s1">,</span><span class="s4">&quot;4:55&quot;</span><span class="s1">,</span><span class="s4">&quot;7:30&quot;</span><span class="s1">}; 
+        String [] wrongs3 = {</span><span class="s4">&quot;Selena Gomez&quot;</span><span class="s1">,</span><span class="s4">&quot;Beyonce&quot;</span><span class="s1">,</span><span class="s4">&quot;Miley Cyrus&quot;</span><span class="s1">}; 
+        String [] wrongs4 = {</span><span class="s4">&quot;North Carolina&quot;</span><span class="s1">,</span><span class="s4">&quot;California&quot;</span><span class="s1">,</span><span class="s4">&quot;New York&quot;</span><span class="s1">}; 
+        String [] wrongs5 = {</span><span class="s4">&quot;Migos&quot;</span><span class="s1">, </span><span class="s4">&quot;Young Thug&quot;</span><span class="s1">, </span><span class="s4">&quot;Childish Gambino&quot;</span><span class="s1">}; 
+ 
+ 
+        myQuestions.add(</span><span class="s0">new </span><span class="s1">Question(</span><span class="s4">&quot;What movie has Professor Astrachan’s brother produced?&quot;</span><span class="s1">,</span><span class="s4">&quot;Short Term 12 &quot;</span><span class="s1">,wrongs1)); 
+        myQuestions.add(</span><span class="s0">new </span><span class="s1">Question(</span><span class="s4">&quot;What is Professor Astrachan’s mile time?&quot;</span><span class="s1">, </span><span class="s4">&quot;5:29&quot;</span><span class="s1">, wrongs2)); 
+        myQuestions.add(</span><span class="s0">new </span><span class="s1">Question(</span><span class="s4">&quot;Which big name celebrity does Professor Astrachan subscribe to on Youtube?&quot;</span><span class="s1">,</span><span class="s4">&quot;Taylor Swift&quot;</span><span class="s1">, wrongs3)); 
+        myQuestions.add(</span><span class="s0">new </span><span class="s1">Question(</span><span class="s4">&quot;Where was Landon on 25 Nov 2008?&quot;</span><span class="s1">,</span><span class="s4">&quot;Michigan&quot;</span><span class="s1">,wrongs4)); 
+        myQuestions.add(</span><span class="s0">new </span><span class="s1">Question(</span><span class="s4">&quot;Which rapper does Landon follow on Twitter?&quot;</span><span class="s1">,</span><span class="s4">&quot;Chance the Rapper&quot;</span><span class="s1">,wrongs5)); 
+    } 
+} 
+</span></pre>
+</body>
+</html>

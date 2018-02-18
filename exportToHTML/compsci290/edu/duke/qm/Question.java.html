@@ -1,0 +1,59 @@
+<html>
+<head>
+<title>Question.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.ln { color: rgb(0,0,0); font-weight: normal; font-style: normal; }
+.s0 { color: rgb(0,0,128); font-weight: bold; }
+.s1 { color: rgb(0,0,0); }
+.s2 { color: rgb(128,128,128); font-style: italic; }
+</style>
+</head>
+<BODY BGCOLOR="#ffffff">
+<TABLE CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#C0C0C0" >
+<TR><TD><CENTER>
+<FONT FACE="Arial, Helvetica" COLOR="#000000">
+Question.java</FONT>
+</center></TD></TR></TABLE>
+<pre>
+<span class="s0">package </span><span class="s1">compsci290.edu.duke.qm; 
+ 
+</span><span class="s0">import </span><span class="s1">java.util.ArrayList; 
+</span><span class="s0">import </span><span class="s1">java.util.List; 
+</span><span class="s2">/** 
+ * Created by ola on 2/6/2017. 
+ * Edited by Jenny Luo 
+ */</span><span class="s1"> 
+ 
+</span><span class="s0">public class </span><span class="s1">Question { 
+ 
+    </span><span class="s0">private </span><span class="s1">String mQuery; 
+    </span><span class="s0">private </span><span class="s1">List&lt;Answer&gt; mAnswers; 
+    </span><span class="s0">private </span><span class="s1">String mType; </span><span class="s2">//images, text</span><span class="s1"> 
+    </span><span class="s0">public </span><span class="s1">Boolean attempted; 
+ 
+    </span><span class="s0">public </span><span class="s1">Question(String q, List&lt;Answer&gt; answers, String type) { 
+        mQuery = q; 
+        mAnswers = answers; 
+        mType = type; 
+        attempted = </span><span class="s0">false</span><span class="s1">; 
+    } 
+ 
+    </span><span class="s0">public </span><span class="s1">String getQuery() { 
+        </span><span class="s0">return </span><span class="s1">mQuery; 
+    } 
+ 
+    </span><span class="s0">public </span><span class="s1">String getType() { 
+        </span><span class="s0">return </span><span class="s1">mType; 
+    } 
+ 
+    </span><span class="s0">public </span><span class="s1">Boolean getAttempted() { 
+        </span><span class="s0">return </span><span class="s1">attempted; 
+    } 
+ 
+    </span><span class="s0">public </span><span class="s1">List&lt;Answer&gt; getChoices() { 
+        </span><span class="s0">return </span><span class="s1">mAnswers; 
+    } 
+}</span></pre>
+</body>
+</html>

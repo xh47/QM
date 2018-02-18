@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">QuizMaster</string>
+    <string name="topleft_button"></string>
+    <string name="topright_button"></string>
+    <string name="botright_button"></string>
+    <string name="botleft_button"></string>
+    <string name="new_quiz">New 2Q Quiz</string>
+    <string name="new_4quiz">New 4Q Quiz</string>
+    <string name="mainquiz">create new quiz for questions</string>
+    <string name="score">Score:</string>
+</resources>

@@ -1,0 +1,159 @@
+<html>
+<head>
+<title>XMLQuizParser.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.ln { color: rgb(0,0,0); font-weight: normal; font-style: normal; }
+.s0 { color: rgb(0,0,128); font-weight: bold; }
+.s1 { color: rgb(0,0,0); }
+.s2 { color: rgb(128,128,128); font-style: italic; }
+.s3 { color: rgb(0,128,0); font-weight: bold; }
+.s4 { color: rgb(0,0,255); }
+</style>
+</head>
+<BODY BGCOLOR="#ffffff">
+<TABLE CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#C0C0C0" >
+<TR><TD><CENTER>
+<FONT FACE="Arial, Helvetica" COLOR="#000000">
+XMLQuizParser.java</FONT>
+</center></TD></TR></TABLE>
+<pre>
+<span class="s0">package </span><span class="s1">compsci290.edu.duke.qm; 
+ 
+</span><span class="s0">import </span><span class="s1">android.util.Log; 
+</span><span class="s0">import </span><span class="s1">android.util.Xml; 
+ 
+</span><span class="s0">import </span><span class="s1">org.xmlpull.v1.XmlPullParser; 
+</span><span class="s0">import </span><span class="s1">org.xmlpull.v1.XmlPullParserException; 
+ 
+</span><span class="s0">import </span><span class="s1">java.io.IOException; 
+</span><span class="s0">import </span><span class="s1">java.io.InputStream; 
+</span><span class="s0">import </span><span class="s1">java.util.ArrayList; 
+</span><span class="s0">import </span><span class="s1">java.util.List; 
+ 
+</span><span class="s2">/** 
+ * Created by Jenny Luo on 2/28/2017. 
+ */</span><span class="s1"> 
+ 
+</span><span class="s0">public class </span><span class="s1">XMLQuizParser { 
+ 
+    </span><span class="s2">// We don't use namespaces</span><span class="s1"> 
+    </span><span class="s0">private static final </span><span class="s1">String ns = </span><span class="s0">null</span><span class="s1">; 
+ 
+    </span><span class="s0">public </span><span class="s1">Quiz parse(InputStream in) </span><span class="s0">throws </span><span class="s1">XmlPullParserException, IOException { 
+        </span><span class="s0">try </span><span class="s1">{ 
+            XmlPullParser parser = Xml.newPullParser(); 
+            parser.setFeature(XmlPullParser.FEATURE_PROCESS_NAMESPACES, </span><span class="s0">false</span><span class="s1">); 
+            parser.setInput(in, </span><span class="s0">null</span><span class="s1">); 
+            parser.nextTag(); 
+            </span><span class="s0">return </span><span class="s1">readQuiz(parser); 
+        } </span><span class="s0">finally </span><span class="s1">{ 
+            in.close(); 
+        } 
+    } 
+ 
+    </span><span class="s0">private </span><span class="s1">Quiz readQuiz(XmlPullParser parser) </span><span class="s0">throws </span><span class="s1">XmlPullParserException, IOException { 
+        ArrayList&lt;Question&gt; questionList = </span><span class="s0">new </span><span class="s1">ArrayList&lt;Question&gt;(); 
+        String title = </span><span class="s3">&quot;&quot;</span><span class="s1">; 
+        parser.require(XmlPullParser.START_TAG, ns, </span><span class="s3">&quot;quiz&quot;</span><span class="s1">); 
+        </span><span class="s0">while </span><span class="s1">(parser.next() != XmlPullParser.END_TAG) { 
+            </span><span class="s0">if </span><span class="s1">(parser.getEventType() != XmlPullParser.START_TAG) { 
+                </span><span class="s0">continue</span><span class="s1">; 
+            } 
+            String name = parser.getName(); 
+            </span><span class="s0">if </span><span class="s1">(name.equals(</span><span class="s3">&quot;title&quot;</span><span class="s1">)) { 
+                title = readTitle(parser); 
+            } </span><span class="s0">else if </span><span class="s1">(name.equals(</span><span class="s3">&quot;question&quot;</span><span class="s1">)) { 
+                questionList.add(readQuestion(parser)); 
+            } </span><span class="s0">else </span><span class="s1">{ 
+                skip(parser); 
+            } 
+        } 
+        Quiz temp = </span><span class="s0">new </span><span class="s1">Quiz(title, questionList); 
+        Log.d(</span><span class="s3">&quot;XMLREADQUIZ&quot;</span><span class="s1">, temp.getTitle()); 
+        </span><span class="s0">return </span><span class="s1">temp; 
+    } 
+ 
+    </span><span class="s0">private </span><span class="s1">Question readQuestion(XmlPullParser parser) </span><span class="s0">throws </span><span class="s1">IOException, XmlPullParserException { 
+        String query = </span><span class="s3">&quot;&quot;</span><span class="s1">; 
+        String type = </span><span class="s3">&quot;&quot;</span><span class="s1">; 
+        ArrayList&lt;Answer&gt; answerList = </span><span class="s0">new </span><span class="s1">ArrayList&lt;&gt;(); 
+        parser.require(XmlPullParser.START_TAG, ns, </span><span class="s3">&quot;question&quot;</span><span class="s1">); 
+        </span><span class="s0">while </span><span class="s1">(parser.next() != XmlPullParser.END_TAG) { 
+            </span><span class="s0">if </span><span class="s1">(parser.getEventType() != XmlPullParser.START_TAG) { 
+                </span><span class="s0">continue</span><span class="s1">; 
+            } 
+            String name = parser.getName(); 
+            </span><span class="s0">if </span><span class="s1">(name.equals(</span><span class="s3">&quot;query&quot;</span><span class="s1">)) { 
+                query = readText(parser); 
+            } </span><span class="s0">else if </span><span class="s1">(name.equals(</span><span class="s3">&quot;type&quot;</span><span class="s1">)) { 
+                type = readText(parser); 
+            } </span><span class="s0">else if </span><span class="s1">(name.equals(</span><span class="s3">&quot;answer&quot;</span><span class="s1">)) { 
+                answerList.add(readAnswer(parser)); 
+            } </span><span class="s0">else </span><span class="s1">{ 
+                skip(parser); 
+            } 
+        } 
+        </span><span class="s0">return new </span><span class="s1">Question(query, answerList, type); 
+    } 
+ 
+    </span><span class="s0">private </span><span class="s1">Answer readAnswer(XmlPullParser parser) </span><span class="s0">throws </span><span class="s1">IOException, XmlPullParserException { 
+        String mName = </span><span class="s3">&quot;&quot;</span><span class="s1">; 
+        String correct = </span><span class="s3">&quot;&quot;</span><span class="s1">; 
+        parser.require(XmlPullParser.START_TAG, ns, </span><span class="s3">&quot;answer&quot;</span><span class="s1">); 
+        </span><span class="s0">while </span><span class="s1">(parser.next() != XmlPullParser.END_TAG) { 
+            </span><span class="s0">if </span><span class="s1">(parser.getEventType() != XmlPullParser.START_TAG) { 
+                </span><span class="s0">continue</span><span class="s1">; 
+            } 
+            String name = parser.getName(); 
+            </span><span class="s0">if </span><span class="s1">(name.equals(</span><span class="s3">&quot;name&quot;</span><span class="s1">)) { 
+                mName = readText(parser); 
+            } </span><span class="s0">else if </span><span class="s1">(name.equals(</span><span class="s3">&quot;correct&quot;</span><span class="s1">)) { 
+                correct = readText(parser); 
+            } </span><span class="s0">else </span><span class="s1">{ 
+                skip(parser); 
+            } 
+        } 
+        Boolean isCorrect = (correct.equals(</span><span class="s3">&quot;true&quot;</span><span class="s1">)); 
+        </span><span class="s0">return new </span><span class="s1">Answer(mName, isCorrect); 
+    } 
+ 
+    </span><span class="s0">private </span><span class="s1">String readTitle(XmlPullParser parser) </span><span class="s0">throws </span><span class="s1">IOException, XmlPullParserException { 
+        parser.require(XmlPullParser.START_TAG, ns, </span><span class="s3">&quot;title&quot;</span><span class="s1">); 
+        String title = readText(parser); 
+        parser.require(XmlPullParser.END_TAG, ns, </span><span class="s3">&quot;title&quot;</span><span class="s1">); 
+        </span><span class="s0">return </span><span class="s1">title; 
+    } 
+ 
+    </span><span class="s2">// For the tags title and summary, extracts their text values.</span><span class="s1"> 
+    </span><span class="s0">private </span><span class="s1">String readText(XmlPullParser parser) </span><span class="s0">throws </span><span class="s1">IOException, XmlPullParserException { 
+        String result = </span><span class="s3">&quot;&quot;</span><span class="s1">; 
+        </span><span class="s0">if </span><span class="s1">(parser.next() == XmlPullParser.TEXT) { 
+            result = parser.getText(); 
+            parser.nextTag(); 
+        } 
+        System.out.println(result); 
+        </span><span class="s0">return </span><span class="s1">result; 
+    } 
+ 
+    </span><span class="s0">private void </span><span class="s1">skip(XmlPullParser parser) </span><span class="s0">throws </span><span class="s1">XmlPullParserException, IOException { 
+        </span><span class="s0">if </span><span class="s1">(parser.getEventType() != XmlPullParser.START_TAG) { 
+            </span><span class="s0">throw new </span><span class="s1">IllegalStateException(); 
+        } 
+        </span><span class="s0">int </span><span class="s1">depth = </span><span class="s4">1</span><span class="s1">; 
+        </span><span class="s0">while </span><span class="s1">(depth != </span><span class="s4">0</span><span class="s1">) { 
+            </span><span class="s0">switch </span><span class="s1">(parser.next()) { 
+                </span><span class="s0">case </span><span class="s1">XmlPullParser.END_TAG: 
+                    depth--; 
+                    </span><span class="s0">break</span><span class="s1">; 
+                </span><span class="s0">case </span><span class="s1">XmlPullParser.START_TAG: 
+                    depth++; 
+                    </span><span class="s0">break</span><span class="s1">; 
+            } 
+        } 
+    } 
+} 
+} 
+</span></pre>
+</body>
+</html>

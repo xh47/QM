@@ -1,0 +1,61 @@
+<html>
+<head>
+<title>Answer.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.ln { color: rgb(0,0,0); font-weight: normal; font-style: normal; }
+.s0 { color: rgb(0,0,128); font-weight: bold; }
+.s1 { color: rgb(0,0,0); }
+.s2 { color: rgb(128,128,128); font-style: italic; }
+</style>
+</head>
+<BODY BGCOLOR="#ffffff">
+<TABLE CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#C0C0C0" >
+<TR><TD><CENTER>
+<FONT FACE="Arial, Helvetica" COLOR="#000000">
+Answer.java</FONT>
+</center></TD></TR></TABLE>
+<pre>
+<span class="s0">package </span><span class="s1">compsci290.edu.duke.qm; 
+ 
+</span><span class="s0">import </span><span class="s1">android.graphics.drawable.Drawable; 
+ 
+</span><span class="s0">import static </span><span class="s1">java.sql.Types.NULL; 
+ 
+</span><span class="s2">/** 
+ * Created by JasmineLu on 2/27/2017. 
+ * Edited by Jenny Luo 
+ */</span><span class="s1"> 
+ 
+</span><span class="s0">public class </span><span class="s1">Answer { 
+    String mName; 
+    Boolean mCorrect; 
+    </span><span class="s0">int </span><span class="s1">mPhotoId; 
+ 
+    </span><span class="s0">public </span><span class="s1">Answer(String name, Boolean correct) { 
+        mName = name; 
+        mCorrect = correct; 
+    } 
+ 
+    </span><span class="s0">public </span><span class="s1">Answer(String name, Boolean correct, </span><span class="s0">int </span><span class="s1">photoID) { </span><span class="s2">//change for photoURL?</span><span class="s1"> 
+        mName = name; 
+        mCorrect = correct; 
+        mPhotoId = photoID; 
+    } 
+ 
+    </span><span class="s0">public </span><span class="s1">String getText() { 
+        </span><span class="s0">return </span><span class="s1">mName; 
+    } 
+ 
+    </span><span class="s0">public </span><span class="s1">Boolean isCorrect() { 
+        </span><span class="s0">return </span><span class="s1">mCorrect; 
+    } 
+ 
+    </span><span class="s0">public int </span><span class="s1">getPhotoID() { 
+        </span><span class="s0">return </span><span class="s1">mPhotoId; 
+    } 
+ 
+} 
+</span></pre>
+</body>
+</html>

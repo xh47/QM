@@ -1,0 +1,146 @@
+<html>
+<head>
+<title>XMLQuizGenerator.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.ln { color: rgb(0,0,0); font-weight: normal; font-style: normal; }
+.s0 { color: rgb(0,0,128); font-weight: bold; }
+.s1 { color: rgb(0,0,0); }
+.s2 { color: rgb(128,128,128); font-style: italic; }
+.s3 { color: rgb(0,128,0); font-weight: bold; }
+.s4 { color: rgb(128,128,128); font-weight: bold; font-style: italic; }
+.s5 { color: rgb(0,0,255); }
+</style>
+</head>
+<BODY BGCOLOR="#ffffff">
+<TABLE CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#C0C0C0" >
+<TR><TD><CENTER>
+<FONT FACE="Arial, Helvetica" COLOR="#000000">
+XMLQuizGenerator.java</FONT>
+</center></TD></TR></TABLE>
+<pre>
+<span class="s0">package </span><span class="s1">compsci290.edu.duke.qm; 
+ 
+</span><span class="s0">import </span><span class="s1">android.content.Context; 
+</span><span class="s0">import </span><span class="s1">android.util.Log; 
+ 
+</span><span class="s0">import </span><span class="s1">java.io.InputStream; 
+</span><span class="s0">import </span><span class="s1">java.util.HashMap; 
+</span><span class="s0">import </span><span class="s1">java.util.Map; 
+</span><span class="s0">import </span><span class="s1">java.util.Set; 
+ 
+</span><span class="s2">/** 
+ * Created by Jenny Luo on 2/28/2017. 
+ */</span><span class="s1"> 
+ 
+</span><span class="s0">public class </span><span class="s1">XMLQuizGenerator { 
+ 
+    </span><span class="s0">private static </span><span class="s1">Map&lt;String, Quiz&gt; ourQuizzes; 
+    </span><span class="s0">private static final </span><span class="s1">String sDEFAULT = </span><span class="s3">&quot;Basketball Quiz&quot;</span><span class="s1">; 
+    </span><span class="s0">private static </span><span class="s1">String sQUIZDIR = </span><span class="s3">&quot;quizzes&quot;</span><span class="s1">; 
+ 
+    </span><span class="s0">static </span><span class="s1">{ 
+        ourQuizzes = </span><span class="s0">new </span><span class="s1">HashMap&lt;&gt;(); 
+    } 
+ 
+    </span><span class="s0">private static void </span><span class="s1">createQuiz(Context context, String quizfile) { 
+        </span><span class="s0">try </span><span class="s1">{ 
+            InputStream is = context.getAssets().open(sQUIZDIR + </span><span class="s3">&quot;/&quot; </span><span class="s1">+ quizfile); 
+            </span><span class="s2">//int length = is.available();</span><span class="s1"> 
+            </span><span class="s2">//byte[] data = new byte[length];</span><span class="s1"> 
+            </span><span class="s2">//is.read(data);</span><span class="s1"> 
+            Quiz q = (</span><span class="s0">new </span><span class="s1">XMLQuizParser().parse(is)); 
+            ourQuizzes.put(q.getTitle(), q); 
+            Log.d(</span><span class="s3">&quot;quizmaster&quot;</span><span class="s1">, </span><span class="s3">&quot;XMLQG.createQuiz added &quot; </span><span class="s1">+ q.getTitle()); 
+        } </span><span class="s0">catch </span><span class="s1">(Exception e) { 
+            e.printStackTrace(); 
+        } 
+    } 
+ 
+    </span><span class="s0">private static void </span><span class="s1">createQuiz(Context context, String quizfile, String lpcox) { 
+        </span><span class="s0">try </span><span class="s1">{ 
+            InputStream is = context.getAssets().open(</span><span class="s3">&quot;lpcox.quizzes/&quot; </span><span class="s1">+ quizfile); 
+            </span><span class="s2">//int length = is.available();</span><span class="s1"> 
+            </span><span class="s2">//byte[] data = new byte[length];</span><span class="s1"> 
+            </span><span class="s2">//is.read(data);</span><span class="s1"> 
+            Quiz q = (</span><span class="s0">new </span><span class="s1">XMLQuizParserCox().parse(is)); 
+            ourQuizzes.put(q.getTitle(), q); 
+            Log.d(</span><span class="s3">&quot;quizmaster&quot;</span><span class="s1">, </span><span class="s3">&quot;XMLQG.createQuiz added &quot; </span><span class="s1">+ q.getTitle()); 
+        } </span><span class="s0">catch </span><span class="s1">(Exception e) { 
+            e.printStackTrace(); 
+        } 
+    } 
+ 
+    </span><span class="s2">/** 
+     * Read in quizzes from the asset directory and create quizzes for each file found 
+     * 
+     * </span><span class="s4">@param </span><span class="s2">context 
+     */</span><span class="s1"> 
+    </span><span class="s0">public static void </span><span class="s1">createQuizzes(Context context) { 
+        Log.d(</span><span class="s3">&quot;QUIZGEN&quot;</span><span class="s1">, </span><span class="s3">&quot;createQuizzes reached&quot;</span><span class="s1">); 
+        </span><span class="s0">try </span><span class="s1">{ 
+            String[] quizfiles = context.getResources().getAssets().list(sQUIZDIR); 
+            </span><span class="s0">for </span><span class="s1">(String quizfile : quizfiles) { 
+                Log.d(</span><span class="s3">&quot;quizmaster&quot;</span><span class="s1">, </span><span class="s3">&quot;XMLQG.createQuizzes&quot; </span><span class="s1">+ quizfile); 
+                createQuiz(context, quizfile); 
+            } 
+        } </span><span class="s0">catch </span><span class="s1">(Exception e) { 
+            e.getMessage(); 
+        } 
+    } 
+ 
+    </span><span class="s0">public static void </span><span class="s1">createQuizzes(Context context, String lpcox) { 
+        Log.d(</span><span class="s3">&quot;QUIZGEN&quot;</span><span class="s1">, </span><span class="s3">&quot;createQuizzes reached&quot;</span><span class="s1">); 
+        </span><span class="s0">try </span><span class="s1">{ 
+            String[] quizfiles = context.getResources().getAssets().list(</span><span class="s3">&quot;lpcox.quizzes&quot;</span><span class="s1">); 
+            </span><span class="s0">for </span><span class="s1">(String quizfile : quizfiles) { 
+                Log.d(</span><span class="s3">&quot;quizmaster&quot;</span><span class="s1">, </span><span class="s3">&quot;XMLQG.createQuizzes&quot; </span><span class="s1">+ quizfile); 
+                createQuiz(context, quizfile, </span><span class="s3">&quot;lpcox&quot;</span><span class="s1">); 
+            } 
+        } </span><span class="s0">catch </span><span class="s1">(Exception e) { 
+            e.getMessage(); 
+        } 
+    } 
+ 
+    </span><span class="s2">/** 
+     * returns a quiz that matches input title 
+     * 
+     * </span><span class="s4">@param </span><span class="s2">s title of the quiz 
+     * </span><span class="s4">@return </span><span class="s2">a quiz matching the title (if found), null if no match 
+     */</span><span class="s1"> 
+    </span><span class="s0">public static </span><span class="s1">Quiz getQuiz(String s) { 
+        Log.d(</span><span class="s3">&quot;quizmaster&quot;</span><span class="s1">, </span><span class="s3">&quot;XMLQG.getQuiz requested &quot; </span><span class="s1">+ s); 
+        Quiz q = ourQuizzes.get(s); 
+        Log.d(</span><span class="s3">&quot;quizmaster&quot;</span><span class="s1">, </span><span class="s3">&quot;XMLQG.getQuiz found &quot; </span><span class="s1">+ q); 
+        </span><span class="s0">return </span><span class="s1">q; 
+    } 
+ 
+    </span><span class="s2">/** 
+     * returns the default quiz 
+     * 
+     * </span><span class="s4">@return </span><span class="s2">the default quiz 
+     */</span><span class="s1"> 
+    </span><span class="s0">public static </span><span class="s1">Quiz getQuiz() { 
+        </span><span class="s0">return </span><span class="s1">getQuiz(sDEFAULT); 
+    } 
+ 
+    </span><span class="s0">public static </span><span class="s1">String getDefaultTitle() { 
+        </span><span class="s0">return </span><span class="s1">sDEFAULT; 
+    } 
+ 
+    </span><span class="s2">/** 
+     * returns quiz titles 
+     * 
+     * </span><span class="s4">@return </span><span class="s2">array of quiz titles 
+     */</span><span class="s1"> 
+    </span><span class="s0">public static </span><span class="s1">String[] getQuizTitles() { 
+        Set&lt;String&gt; titles = ourQuizzes.keySet(); 
+        </span><span class="s0">return </span><span class="s1">titles.toArray(</span><span class="s0">new </span><span class="s1">String[</span><span class="s5">0</span><span class="s1">]); 
+    } 
+ 
+    </span><span class="s0">private </span><span class="s1">XMLQuizGenerator() { 
+    } 
+} 
+</span></pre>
+</body>
+</html>

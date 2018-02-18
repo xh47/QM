@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        is-multidex="false"
+        jar="C:\Users\Ian\Desktop\Duke\CS290\QM\QM\app\build\intermediates\exploded-aar\com.android.support\support-media-compat\25.1.1\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="7bde4c34162092e0a77e7f12dc85ed77c484cf5c">
+        <dex dex="C:\Users\Ian\Desktop\Duke\CS290\QM\QM\app\build\intermediates\pre-dexed\debug\com.android.support-support-media-compat-25.1.1_88450816b7fbfe9a56248e87b8702d87997e42b0.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\Ian\Desktop\Duke\CS290\QM\QM\app\build\intermediates\exploded-aar\com.android.support\transition\25.1.1\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="15b049fedbd8e3926bf99d9e45dfc9b2a1043bb9">
+        <dex dex="C:\Users\Ian\Desktop\Duke\CS290\QM\QM\app\build\intermediates\pre-dexed\debug\com.android.support-transition-25.1.1_327d8e99e57adb9a54b67c78a542178e6236f49b.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\Ian\Desktop\Duke\CS290\QM\QM\app\build\intermediates\exploded-aar\com.android.support\support-vector-drawable\25.1.1\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="c03bf57f358aa10d253f21989e93bcf6014b3b17">
+        <dex dex="C:\Users\Ian\Desktop\Duke\CS290\QM\QM\app\build\intermediates\pre-dexed\debug\com.android.support-support-vector-drawable-25.1.1_231b688e3d64b93296a9ae861f288bde5889ed7b.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\Ian\AppData\Local\Android\Sdk\extras\android\m2repository\com\android\support\support-annotations\25.1.1\support-annotations-25.1.1.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="b59b6ee8d6ecc03e672d253800430343493a6ed8">
+        <dex dex="C:\Users\Ian\Desktop\Duke\CS290\QM\QM\app\build\intermediates\pre-dexed\debug\support-annotations-25.1.1_a7a4b895944cc46020fb63caffbba78e32dabdda.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\Ian\Desktop\Duke\CS290\QM\QM\app\build\intermediates\exploded-aar\com.android.support\design\25.1.1\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="cd7951e04cfb9a8bf008d544a478d9a8d8192d38">
+        <dex dex="C:\Users\Ian\Desktop\Duke\CS290\QM\QM\app\build\intermediates\pre-dexed\debug\com.android.support-design-25.1.1_1446b5f67e17bcde7fbf62c85cfbb19751997e32.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\Ian\Desktop\Duke\CS290\QM\QM\app\build\intermediates\exploded-aar\com.android.support\support-core-ui\25.1.1\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="3e04ac8ca644ea7baddf6fdcf72e15c79e9df94a">
+        <dex dex="C:\Users\Ian\Desktop\Duke\CS290\QM\QM\app\build\intermediates\pre-dexed\debug\com.android.support-support-core-ui-25.1.1_b2d2352d8724cef5fd6216126e5d62ff2592733d.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\Ian\Desktop\Duke\CS290\QM\QM\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\25.1.1\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="ecb496cc08dd52551fc5ec6db3bc0632e95a89bb">
+        <dex dex="C:\Users\Ian\Desktop\Duke\CS290\QM\QM\app\build\intermediates\pre-dexed\debug\com.android.support-appcompat-v7-25.1.1_9736e09fc4d8d59b539f6a8d00ba4b0bdc875b98.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\Ian\Desktop\Duke\CS290\QM\QM\app\build\intermediates\exploded-aar\com.android.support\support-v4\25.1.1\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="d7c42c80f6509b9ea4db28ca7859ffae08ec5741">
+        <dex dex="C:\Users\Ian\Desktop\Duke\CS290\QM\QM\app\build\intermediates\pre-dexed\debug\com.android.support-support-v4-25.1.1_9a8130bfc476a77697bfe3920e138b83692bcfc8.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\Ian\Desktop\Duke\CS290\QM\QM\app\build\intermediates\exploded-aar\com.android.support\animated-vector-drawable\25.1.1\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="0d191c1a09e4892d059e5ce749e4ad4e08129e35">
+        <dex dex="C:\Users\Ian\Desktop\Duke\CS290\QM\QM\app\build\intermediates\pre-dexed\debug\com.android.support-animated-vector-drawable-25.1.1_00635a55b8f35ffaee8405f357b1e404932739de.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\Ian\Desktop\Duke\CS290\QM\QM\app\build\intermediates\exploded-aar\com.android.support\support-fragment\25.1.1\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="e2719c102dca3a7a5b02ce07f769362da6ddb4ab">
+        <dex dex="C:\Users\Ian\Desktop\Duke\CS290\QM\QM\app\build\intermediates\pre-dexed\debug\com.android.support-support-fragment-25.1.1_aecb275a0d44bdfcff545255819685f3e24c863f.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\Ian\Desktop\Duke\CS290\QM\QM\app\build\intermediates\exploded-aar\com.android.support\recyclerview-v7\25.1.1\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="c9649557905bf7a80fca9e0d54cbcb7662627860">
+        <dex dex="C:\Users\Ian\Desktop\Duke\CS290\QM\QM\app\build\intermediates\pre-dexed\debug\com.android.support-recyclerview-v7-25.1.1_dbfdc32bb22a1e851dc9640f01f675fababbe91d.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\Ian\Desktop\Duke\CS290\QM\QM\app\build\intermediates\exploded-aar\com.android.support\support-compat\25.1.1\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="02741d05d4b697fba5e279e9881aaa1da0ca7c7f">
+        <dex dex="C:\Users\Ian\Desktop\Duke\CS290\QM\QM\app\build\intermediates\pre-dexed\debug\com.android.support-support-compat-25.1.1_ea8e1b606e89542725ef06c85e60a94199a0af87.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\Ian\Desktop\Duke\CS290\QM\QM\app\build\intermediates\exploded-aar\com.android.support\support-core-utils\25.1.1\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="0fb891e8f0cfba0513043a7bb357513d229ca2cd">
+        <dex dex="C:\Users\Ian\Desktop\Duke\CS290\QM\QM\app\build\intermediates\pre-dexed\debug\com.android.support-support-core-utils-25.1.1_eaf8a9bae96a42a528aa728a74e03a2fa55c5dfc.jar" />
+    </item>
+
+</items>
