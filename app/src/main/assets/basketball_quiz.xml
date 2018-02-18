@@ -1,27 +1,27 @@
 <quiz>
-    <title>NBA Quiz</title>
+    <title>Duke Basketball</title>
+
     <question>
-        <query>Who is the all-time leading scorer in the NBA?</query>
-        <type>text</type>
-        <answer>
-            <name>Kobe Bryant</name>
-            <correct>false</correct>
-            <!--<photo></photo>-->
-        </answer>
-        <answer>
-            <name>Kareem Abdul-Jabbar</name>
-            <correct>true</correct>
-            <!--<photo></photo>-->
-        </answer>
-        <answer>
-            <name>Michael Jordan</name>
-            <correct>false</correct>
-            <!--<photo></photo>-->
-        </answer>
-        <answer>
-            <name>Karl Malone</name>
-            <correct>false</correct>
-            <!--<photo></photo>-->
-        </answer>
+        <text>Who is Duke's head coach?</text>
+        <difficulty>0</difficulty>
+        <correctanswer>Coach K</correctanswer>
+        <wronganswer>Coach Z</wronganswer>
+    </question>
+
+    <question>
+        <text>What year did Duke win the national title?</text>
+        <difficulty>1</difficulty>
+        <correctanswer>2010</correctanswer>
+        <wronganswer>1999</wronganswer>
+        <wronganswer>1986</wronganswer>
+    </question>
+
+    <question>
+        <text>Who is Duke's all-time leading scorer?</text>
+        <difficulty>2</difficulty>
+        <correctanswer>JJ Redick</correctanswer>
+        <wronganswer>Shane Battier</wronganswer>
+        <wronganswer>Grant Hill</wronganswer>
+        <wronganswer>Johnny Dawkins</wronganswer>
     </question>
 </quiz>
